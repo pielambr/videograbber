@@ -1,0 +1,18 @@
+{
+  "name": "videograbber",
+  "version": "1.0.0",
+  "description": "Grabs videos from websites and optionally converts them",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "convert",
+    "video"
+  ],
+  "author": "Pieterjan Lambrecht",
+  "license": "MIT",
+  "dependencies": {
+    "phantomjs": "^2.1.7"
+  }
+}
