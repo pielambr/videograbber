@@ -1,0 +1,37 @@
+extends base.pug
+
+block content
+  div(class='row z-depth-1', id='url-form')
+    form(class='col m8 offset-m2', method='post')
+      div(class='row')
+        div(class='input-field')
+          input(placeholder='Webpage URL', id='site_url', name='site_url', required)
+      div(class='row')
+        button(class='btn', type='submit') Process
+          i(class='material-icons right') send
+  h4 Processed files
+  div(class='progress', id='file-processing')
+    div(class='indeterminate')
+  ul(class='collapsible', data-collapsible='expandable', id='file-list') 
+    if files
+      each file in files
+        li 
+          div(class='collapsible-header') file.name
+            i(class='material-icons') cloud
+          div(class='collapsible-body') 
+            ul
+              li(class='collection-item')
+                div Original Webpage
+                  a(href='', class='secondary-content')
+                    i(class='material-icons') http
+                div Download link
+                  a(href='', class='secondary-content')
+                    i(class='material-icons') file_download
+                div File info
+                  i(class='material-icons') info
+                  
+    else
+      div(class='collapsible-header') No files found for this session
+        i(class='material-icons') view_list
+        
+              

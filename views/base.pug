@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width', initial-scale='1')
+    title #{title} | pielambr.be
+    block stylesheets
+      link(href='//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css', rel='stylesheet')
+      link(href='//fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet') 
+      style
+        include css/videograbber.css
+  body
+    nav
+      div(class='nav-wrapper blue')
+        a(href='#', class='brand-logo') Video Grabber
+    div(class='container')
+      block content
+    block scripts
+      script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+      script(src='//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js')
+      script(src='//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.slim.js')
+      script
+        include js/videograbber.js
+   
