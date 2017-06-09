@@ -8,4 +8,15 @@
 
 #file-processing {
   display: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+tr:nth-child(even) {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+td i {
+  margin-left: 15px;
+  vertical-align: bottom;
 }
