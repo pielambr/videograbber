@@ -53,3 +53,5 @@ global.io.on('connection', (s) => {
 });
 
 http.listen(process.env.PORT);
+
+module.exports = http;

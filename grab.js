@@ -5,6 +5,7 @@ const shortid = require('shortid');
 const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
+const validUrl = require('valid-url');
 
 const regex = /(http[s]?:\/\/.+m3u8)/;
 
@@ -35,17 +36,16 @@ function downloadPlaylist(req, res, url, origin) {
 }
 
 function grabVideo(req, res) {
-  if (!req.body || !req.body.site_url) {
+  if (!req.body || !req.body.site_url || !validUrl.isUri(req.body.site_url)) {
     return res.sendStatus(400);
   }
   notify(req.sessionID, 'processing');
   request(req.body.site_url, (err, resp, body) => {
     if (err) {
       notify(req.sessionID, 'processed');
-      return res.sendStatus(500);
     }
     const result = body.match(regex);
-    return downloadPlaylist(req, res, result[1], req.body.site_url);
+    downloadPlaylist(req, res, result[1], req.body.site_url);
   });
   return res.json({ success: true, message: 'Processing URL...' });
 }
@@ -82,6 +82,7 @@ function cleanFiles() {
                 fs.stat(path.join('videos/', folder, file), (err4, stat2) => {
                   const lastChanged = new Date(stat2.ctime).getTime();
                   if (lastChanged < hourAgo) {
+                    delete global.files[file.split('.')[0]];
                     return rimraf(path.join('videos', folder, file));
                   }
                   return false;
